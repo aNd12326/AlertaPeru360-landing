@@ -1,0 +1,136 @@
+<nav
+  class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm shadow-sm z-50"
+>
+  <div
+    class="max-w-[1200px] mx-auto px-4 flex justify-between items-center h-16"
+  >
+    <!-- Logo -->
+    <!-- <a href="/" class="text-xl font-bold text-blue-600">
+      Tu Logo
+    </a> -->
+    <a href="/">
+      <img
+        src="/logo.jpg"
+        alt="logo Alerta Peru 360."
+        width="48"
+        height="48"
+        class="rounded-full"
+      /></a
+    >
+
+    <!-- Desktop Navigation -->
+    <div class="hidden md:flex items-center space-x-8">
+      <a
+        href="#inicio"
+        class="text-gray-600 hover:text-gray-900 transition-colors">Inicio</a
+      >
+      <a
+        href="#acerca"
+        class="text-gray-600 hover:text-gray-900 transition-colors">Acerca</a
+      >
+      <a
+        href="#mapas"
+        class="text-gray-600 hover:text-blue-900 transition-colors"
+        >Mapas de Riesgo</a
+      >
+      <a
+        href="#recursos"
+        class="text-gray-600 hover:text-blue-900 transition-colors">Recursos</a
+      >
+      <a
+        href="#contacto"
+        class="text-gray-600 hover:text-blue-900 transition-colors">Contacto</a
+      >
+      <button
+        class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 hover:text-blue-900 transition-colors focus:outline-none cursor-pointer"
+        aria-label="Iniciar sesión"
+      >
+        <svg
+          class="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+          ></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button
+      class="md:hidden p-2 rounded-md text-gray-600 hover:text-blue-600 hover:bg-gray-100 focus:outline-none"
+      id="mobile-menu-button"
+      aria-label="Toggle menu"
+    >
+      <svg
+        class="h-6 w-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <div class="md:hidden hidden" id="mobile-menu">
+    <div class="px-2 pt-2 pb-3 space-y-1">
+      <a
+        href="#inicio"
+        class="block px-3 py-2 rounded-md text-gray-600 hover:text-blue-600 hover:bg-gray-100"
+        >Inicio</a
+      >
+      <a
+        href="#acerca"
+        class="block px-3 py-2 rounded-md text-gray-600 hover:text-blue-600 hover:bg-gray-100"
+        >Acerca</a
+      >
+      <a
+        href="#mapas"
+        class="block px-3 py-2 rounded-md text-gray-600 hover:text-blue-600 hover:bg-gray-100"
+        >Mapas de Riesgo</a
+      >
+      <a
+        href="#recursos"
+        class="block px-3 py-2 rounded-md text-gray-600 hover:text-blue-600 hover:bg-gray-100"
+        >Recursos</a
+      >
+      <a
+        href="#contacto"
+        class="block px-3 py-2 rounded-md text-gray-600 hover:text-blue-600 hover:bg-gray-100"
+        >Contacto</a
+      >
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Toggle mobile menu
+  const mobileMenuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  mobileMenuButton?.addEventListener("click", () => {
+    mobileMenu?.classList.toggle("hidden");
+  });
+
+  // Close mobile menu when clicking outside
+  document.addEventListener("click", (event) => {
+    if (
+      !mobileMenuButton?.contains(event.target as Node) &&
+      !mobileMenu?.contains(event.target as Node)
+    ) {
+      mobileMenu?.classList.add("hidden");
+    }
+  });
+</script>
+
