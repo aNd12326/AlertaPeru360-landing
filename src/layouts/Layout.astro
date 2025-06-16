@@ -1,6 +1,9 @@
 ---
 import "../styles/global.css";
+// ViewTransitions
+import { ClientRouter } from "astro:transitions";
 ---
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -9,6 +12,7 @@ import "../styles/global.css";
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>AlertaPerú360</title>
+		<ClientRouter />
 	</head>
 	<body>
 		<slot />
