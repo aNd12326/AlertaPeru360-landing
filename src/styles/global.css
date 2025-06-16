@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+/* Custom CSS for smooth input underline transition on focus */
+.input-underline-transition {
+  transition-property: border-bottom-width, border-bottom-color;
+  transition-duration: 0s; /* Default: instant on blur */
+}
+
+.input-underline-transition:focus {
+  transition-duration: 0.3s; /* Smooth on focus */
+}
