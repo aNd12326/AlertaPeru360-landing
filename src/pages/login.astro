@@ -1,19 +1,27 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const { cookies, redirect } = Astro;
+
+const accessToken = cookies.get("sb-access-token");
+const refreshToken = cookies.get("sb-refresh-token");
+
+if (accessToken && refreshToken) {
+  return redirect("/dashboard");
+}
 ---
 
 <Layout title="Iniciar Sesión - AlertaPerú360">
   <div class="bg-gray-100 flex items-center justify-center min-h-screen w-full">
     <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
       <h2 class="text-3xl font-bold text-gray-900 text-center mb-6">Iniciar Sesión</h2>
-      <form class="space-y-6">
+      <form id="login-form" action="/api/auth/signin" method="post" class="space-y-6">
         <div>
           <label for="email" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
           <input
             type="email"
             id="email"
             name="email"
-            required
             class="mt-1 block w-full px-3 py-2 border-b-0 placeholder-gray-400 focus:outline-none focus:border-b focus:border-black sm:text-sm appearance-none input-underline-transition"
             placeholder="tu@ejemplo.com"
           />
@@ -24,7 +32,6 @@ import Layout from '../layouts/Layout.astro';
             type="password"
             id="password"
             name="password"
-            required
             class="mt-1 block w-full px-3 py-2 border-b-0 placeholder-gray-400 focus:outline-none focus:border-b focus:border-black sm:text-sm appearance-none input-underline-transition"
             placeholder="••••••••"
           />
@@ -64,6 +71,33 @@ import Layout from '../layouts/Layout.astro';
           </a>
         </p>
       </div>
+      <div class="mt-6">
+        <p id="error-msg" class="text-red-500 text-sm"></p>
+      </div>
     </div>
   </div>
 </Layout>
+
+<script>
+  const form = document.getElementById("login-form");
+  const errorMsg = document.getElementById("error-msg");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    const res = await fetch(form.action, {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!res.ok) {
+      const msg = await res.text();
+      errorMsg.textContent = msg; // muestra error Supabase como "Invalid login credentials"
+      console.log(msg);
+    } else {
+      window.location.href = "/"; // redirige al home
+    }
+  });
+</script>

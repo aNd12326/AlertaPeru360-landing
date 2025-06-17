@@ -1,3 +1,6 @@
+---
+const { email } = Astro.props;
+---
 <nav
   class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm shadow-sm z-50"
 >
@@ -68,6 +71,12 @@
         ></path>
       </svg>
     </a>
+
+    <h3>Bienvenido {email}</h3>
+
+    <form action="/api/auth/signout">
+      <button type="submit">Cerrar sesión</button>
+    </form>
 
     <!-- Mobile Menu Button -->
     <button
