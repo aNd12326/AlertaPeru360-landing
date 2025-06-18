@@ -8,8 +8,7 @@ import Recursos from '../components/Recursos.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Integracion de supabase AUTH para usuarios
 
 import { supabase } from "../lib/supabase";
 
@@ -39,10 +38,25 @@ if (error) {
 }
 
 const email = data?.user?.email;
+
+const userId = data?.user?.id;
+
+const { data: profile, error: profileError } = await supabase
+  .from("profiles")
+  .select("username")
+  .eq("id", userId)
+  .single();
+
+if (profileError) {
+  return new Response("Error obteniendo el perfil", { status: 500 });
+}
+
+const username = profile?.username;
+
 ---
 
 <Layout>
-	<Navbar email={email} />
+	<Navbar email={email} username={username}/>
 	<main>
 		<section id="inicio">
 			<Hero />
